@@ -4,7 +4,7 @@ import AppHeader from '@/components/header/AppHeader.vue'
 import AppSidebar from '@/components/sidebar/AppSidebar.vue'
 
 export default defineComponent({
-  name: 'DashboardLayout',
+  name: 'RootLayout',
   components: { AppHeader, AppSidebar },
 })
 </script>
@@ -15,12 +15,13 @@ export default defineComponent({
     <AppHeader />
 
     <!-- SIDEBAR PRECISA ESTAR DIRETAMENTE AQUI -->
-  <div class="flex flex-1 overflow-hidden w-full overflow-x-hidden">
+    <div class="flex flex-1 overflow-hidden w-full overflow-x-hidden">
       <AppSidebar />
       <!-- Sidebar direto no container ✔ -->
 
-   <main class="flex-1 overflow-y-auto overflow-x-hidden p-6 bg-gray-100">
-        <slot />
+      <main class="flex-1 overflow-y-auto overflow-x-hidden p-6 bg-gray-100">
+        <!-- <slot /> -->
+        <router-view />
       </main>
     </div>
   </div>
