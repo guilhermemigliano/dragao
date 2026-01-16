@@ -12,4 +12,11 @@ declare module '@vue/runtime-core' {
   }
 }
 
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    cn: (...classes: any[]) => string
+    formatDate: (date: string) => string
+  }
+}
+
 export {}

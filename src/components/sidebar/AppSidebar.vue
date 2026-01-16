@@ -1,10 +1,10 @@
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue"
-import { useRoute, RouterLink } from "vue-router"
-import { menuItems } from "@/components/sidebar/SidebarMenu"
+import { defineComponent, ref, watch } from 'vue'
+import { useRoute, RouterLink } from 'vue-router'
+import { menuItems } from '@/components/sidebar/SidebarMenu'
 
 // Ícones auxiliares
-import { ChevronRight, User2, ChevronUp } from "lucide-vue-next"
+import { ChevronRight, User2, ChevronUp } from 'lucide-vue-next'
 
 // shadcn-vue components
 import {
@@ -21,24 +21,19 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
   SidebarSeparator,
-  SidebarRail
-} from "@/components/ui/sidebar"
+} from '@/components/ui/sidebar'
 
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "@/components/ui/collapsible"
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible'
 
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from "@/components/ui/dropdown-menu"
+} from '@/components/ui/dropdown-menu'
 
 export default defineComponent({
-  name: "AppSidebar",
+  name: 'AppSidebar',
 
   components: {
     RouterLink,
@@ -94,14 +89,13 @@ export default defineComponent({
             openStates.value[key] = route.path.startsWith(item.path)
           }
         })
-      }
+      },
     )
 
     // função recursiva para renderizar menus
     const isActive = (path: string) => route.path === path
 
-    const isParentActive = (path: string) =>
-      route.path.startsWith(path)
+    const isParentActive = (path: string) => route.path.startsWith(path)
 
     return {
       route,
@@ -115,10 +109,10 @@ export default defineComponent({
 </script>
 
 <template>
-<Sidebar
-  collapsible="offcanvas"
-  class="border-r bg-sidebar w-64 shrink-0 overflow-y-auto overflow-x-hidden"
->
+  <Sidebar
+    collapsible="offcanvas"
+    class="border-r bg-sidebar w-64 shrink-0 overflow-y-auto overflow-x-hidden"
+  >
     <!-- HEADER -->
     <SidebarHeader>
       <SidebarMenu>
@@ -146,13 +140,9 @@ export default defineComponent({
         <SidebarGroupContent>
           <SidebarMenu>
             <template v-for="item in menuItems" :key="item.label">
-
               <!-- ITEM SEM FILHOS -->
               <SidebarMenuItem v-if="!item.children">
-                <SidebarMenuButton
-                  as-child
-                  :is-active="isActive(item.path)"
-                >
+                <SidebarMenuButton as-child :is-active="isActive(item.path)">
                   <RouterLink :to="item.path">
                     <component :is="item.icon" class="w-4 h-4 shrink-0" />
                     <span>{{ item.label }}</span>
@@ -162,14 +152,9 @@ export default defineComponent({
 
               <!-- ITEM COM FILHOS (COLLAPSIBLE) -->
               <SidebarMenuItem v-else>
-                <Collapsible
-                  v-model:open="openStates[item.label]"
-                  class="group/collapsible"
-                >
+                <Collapsible v-model:open="openStates[item.label]" class="group/collapsible">
                   <CollapsibleTrigger as-child>
-                    <SidebarMenuButton
-                      :is-active="isParentActive(item.path)"
-                    >
+                    <SidebarMenuButton :is-active="isParentActive(item.path)">
                       <component :is="item.icon" class="w-4 h-4 shrink-0" />
                       <span>{{ item.label }}</span>
 
@@ -181,14 +166,8 @@ export default defineComponent({
 
                   <CollapsibleContent>
                     <SidebarMenuSub>
-                      <SidebarMenuSubItem
-                        v-for="child in item.children"
-                        :key="child.path"
-                      >
-                        <SidebarMenuButton
-                          as-child
-                          :is-active="isActive(child.path)"
-                        >
+                      <SidebarMenuSubItem v-for="child in item.children" :key="child.path">
+                        <SidebarMenuButton as-child :is-active="isActive(child.path)">
                           <RouterLink :to="child.path">
                             <component :is="child.icon" class="size-4" />
                             <span>{{ child.label }}</span>
@@ -199,7 +178,6 @@ export default defineComponent({
                   </CollapsibleContent>
                 </Collapsible>
               </SidebarMenuItem>
-
             </template>
           </SidebarMenu>
         </SidebarGroupContent>
@@ -209,9 +187,6 @@ export default defineComponent({
     </SidebarContent>
 
     <!-- FOOTER -->
-    <SidebarFooter>
-     
-    </SidebarFooter>
-    <SidebarRail />
+    <SidebarFooter> </SidebarFooter>
   </Sidebar>
 </template>

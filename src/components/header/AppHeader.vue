@@ -20,7 +20,7 @@ export default defineComponent({
 
     <div class="flex items-center gap-4">
       <span class="text-sm text-gray-600">Olá, Usuário</span>
-      <img src="https://ui-avatars.com/api/?name=Guilherme" class="w-10 h-10 rounded-full" />
+      <img src="https://ui-avatars.com/api/?name=Usuario" class="w-10 h-10 rounded-full" />
     </div>
   </header>
 </template>
