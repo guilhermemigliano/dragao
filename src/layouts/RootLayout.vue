@@ -19,7 +19,7 @@ export default defineComponent({
       <AppSidebar />
       <!-- Sidebar direto no container ✔ -->
 
-      <main class="flex-1 overflow-y-auto overflow-x-hidden p-6 bg-gray-100">
+      <main class="flex-1 overflow-y-auto overflow-x-hidden p-6 bg-zinc-200">
         <!-- <slot /> -->
         <router-view />
       </main>

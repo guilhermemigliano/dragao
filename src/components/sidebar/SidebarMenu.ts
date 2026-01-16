@@ -11,11 +11,11 @@ import {
 } from 'lucide-vue-next'
 
 export const menuItems = [
-  {
-    path: '/in/dashboard',
-    label: 'Dashboard',
-    icon: ChartNoAxesCombined,
-  },
+  // {
+  //   path: '/in/dashboard',
+  //   label: 'Dashboard',
+  //   icon: ChartNoAxesCombined,
+  // },
   {
     path: '/in/demanda',
     label: 'Demanda',
