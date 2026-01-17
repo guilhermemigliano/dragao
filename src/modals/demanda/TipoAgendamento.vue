@@ -53,23 +53,33 @@
         </Table>
 
         <DialogFooter>
-          <DialogClose as-child>
-            <Button variant="outline">Fechar</Button>
-          </DialogClose>
+          <div class="flex items-center justify-between w-full mt-4">
+            <!-- BOTÃO ADICIONAR -->
+            <div class="flex">
+              <Button variant="default" @click="openAddModal = true"> Adicionar tipo </Button>
+            </div>
+            <DialogClose as-child>
+              <Button variant="outline">Fechar</Button>
+            </DialogClose>
+          </div>
         </DialogFooter>
       </DialogContent>
     </Dialog>
+
+    <AddTipoAgendamento v-model="openAddModal" @created="addNovoTipo" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { SearchIcon, Loader2Icon, XIcon } from 'lucide-vue-next'
+import AddTipoAgendamento from '@/modals/demanda/AddTipoAgendamento.vue'
 
 export default defineComponent({
   name: 'TipoAgendamento',
 
   components: {
+    AddTipoAgendamento,
     SearchIcon,
     Loader2Icon,
     XIcon,
@@ -89,6 +99,7 @@ export default defineComponent({
     return {
       modalTitle: 'Tipos de Agendamento',
       modalDescription: 'Clique em um item para selecionar.',
+      openAddModal: false,
       loading: false,
       items: [] as Array<{ id: number; descricao: string }>,
     }
@@ -97,6 +108,9 @@ export default defineComponent({
   methods: {
     clearValue() {
       this.$emit('update:modelValue', null)
+    },
+    addNovoTipo(novo: { id: number; descricao: string }) {
+      this.items.push(novo)
     },
     async loadFakeData() {
       this.loading = true
