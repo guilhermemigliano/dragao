@@ -6,9 +6,25 @@
           <Label>Data da Demanda</Label>
           <DatePicker v-model="data.U_DocDate" />
         </div>
+
+        <div class="flex flex-col gap-2">
+          <Label>Data de Entrega</Label>
+          <DatePicker v-model="data.U_DataEntrega" />
+        </div>
+
         <div class="flex flex-col gap-2">
           <Label>Tipo de Agendamento</Label>
           <TipoAgendamento v-model="data.U_TipoAgenda" />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <Label>Nome da Carga</Label>
+          <Input v-model.trim="data.U_NomeCarga" />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <Label>Tipo de Carga</Label>
+          <TipoCarga v-model="data.U_TipoCarga" />
         </div>
       </form>
     </PanelComponent>
@@ -20,15 +36,16 @@ import { defineComponent } from 'vue'
 import { DemandaSchema } from '@/validators/demanda.schema'
 import { CalendarIcon } from 'lucide-vue-next'
 import TipoAgendamento from '@/modals/demanda/TipoAgendamento.vue'
+import TipoCarga from '@/modals/demanda/TipoCarga.vue'
 
 const initState = () => {
   return {
     Code: null, //númerico número do registro do cabeçalho e das linhas. Descrição na tela 'Carga'. DocNum replicado para as linhas também
-    U_DocDate: null, // **obrigatório
+    U_DocDate: null, // **obrigatório Data da Demanda
     U_TipoAgenda: null, //[Pendente, Confirmado, Ordem de chegada] pode cadastrar mais
     U_DataEntrega: null, //data prevista para entrega
     U_NomeCarga: '', // **obrigatório
-    U_TipoCarga: '', // **obrigatório DUPLICADA NO DOCUMENTO [Paletizada, Batida, Mista] pode cadastrar mais
+    U_TipoCarga: null, // **obrigatório DUPLICADA NO DOCUMENTO [Paletizada, Batida, Mista] pode cadastrar mais
     U_TipoVeiculo: '', // [Carreta, Tuck, Carreta Sider] pode cadastrar mais
     U_StatusCarga: '', // **obrigatório [Criando, Liberada, Ajuste, Encerrada, Cancelada] - só pode ser alterado para encerrada quando o campo Picking, NF do produto e Manisfesto for preenchido
     U_TipoEntrega: '', // [Entrega CIF, Retira FOB] pode cadastrar mais
@@ -82,6 +99,7 @@ export default defineComponent({
   components: {
     CalendarIcon,
     TipoAgendamento,
+    TipoCarga,
   },
   data() {
     return {
